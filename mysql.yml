@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: mysql
+  name: mysql
+spec:
+  containers:
+  - image: mysql
+    name: mysql
+    envFrom:
+    - secretRef:
+        name: mysql-secret
+    ports:
+    - containerPort: 3306
+    volumeMounts:
+    - name: default-auth
+      mountPath: /etc/mysql/conf.d
+  volumes:
+  - name: default-auth
+    hostPath:
+      path: /Users/inoueaoi/Git/bookstore/mysql-confd
+      type: Directory
+---
+apiVersion: v1
+data:
+  MYSQL_ROOT_PASSWORD: UGFzc3cwcmQh
+kind: Secret
+metadata:
+  name: mysql-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: mysql
+  name: mysql-svc
+spec:
+  ports:
+  - port: 3306
+    protocol: TCP
+    targetPort: 3306
+  selector:
+    run: mysql
+status:
+  loadBalancer: {}
