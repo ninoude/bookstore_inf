@@ -17,10 +17,16 @@ spec:
     volumeMounts:
     - name: default-auth
       mountPath: /etc/mysql/conf.d
+    - name: init-db
+      mountPath: /docker-entrypoint-initdb.d
   volumes:
   - name: default-auth
     hostPath:
-      path: /Users/inoueaoi/Git/bookstore/mysql-confd
+      path: /Users/inoueaoi/Git/bookstore/db/confd
+      type: Directory
+  - name: init-db
+    hostPath:
+      path: /Users/inoueaoi/Git/bookstore/db/initd
       type: Directory
 ---
 apiVersion: v1

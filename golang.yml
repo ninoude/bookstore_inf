@@ -20,7 +20,7 @@ spec:
         git clone https://github.com/ninoude/bookstore_users-api.git $GOPATH/src/github.com/ninoude/bookstore_users-api/;
         apt update;
         apt install -y vim mariadb-client;
-        sleep 36000;
+        sleep 360000000;
 #        go run $GOPATH/src/github.com/ninoude/bookstore_users-api/main.go;
     ports:
     - containerPort: 8080
