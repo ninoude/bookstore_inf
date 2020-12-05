@@ -17,11 +17,12 @@ spec:
     args:
       - go get -u github.com/gin-gonic/gin;
         go get -u github.com/go-sql-driver/mysql;
+        go get -u go.uber.org/zap;
         git clone https://github.com/ninoude/bookstore_users-api.git $GOPATH/src/github.com/ninoude/bookstore_users-api/;
         apt update;
         apt install -y vim mariadb-client;
         sleep 360000000;
-#        go run $GOPATH/src/github.com/ninoude/bookstore_users-api/main.go;
+        #go run $GOPATH/src/github.com/ninoude/bookstore_users-api/main.go;
     ports:
     - containerPort: 8080
 

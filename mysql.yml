@@ -22,11 +22,11 @@ spec:
   volumes:
   - name: default-auth
     hostPath:
-      path: /Users/inoueaoi/Git/bookstore_inf/db/confd
+      path: ./db/confd
       type: Directory
   - name: init-db
     hostPath:
-      path: /Users/inoueaoi/Git/bookstore_inf/db/initd
+      path: ./db/initd
       type: Directory
 ---
 apiVersion: v1
