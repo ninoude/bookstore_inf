@@ -10,7 +10,6 @@ spec:
   selector:
     matchLabels:
       app: golang
-  strategy: {}
   template:
     metadata:
       creationTimestamp: null
@@ -35,6 +34,7 @@ spec:
         - secretRef:
             name: golang-secret
           prefix: MYSQL_USERS_
+          
 ---
 apiVersion: v1
 kind: Secret
