@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cassandra
+  name: cassandra
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cassandra
+  template:
+    metadata:
+      labels:
+        app: cassandra
+    spec:
+      containers:
+      - image: cassandra:latest
+        name: cassandra
+        ports:
+        - containerPort: 9042
+        - containerPort: 7000
+        - containerPort: 7199
+        - containerPort: 9160
+        envFrom:
+        - secretRef:
+            name: cassandra-secret
+---
+apiVersion: v1
+data:
+  CASSANDRA_PASSWORD: UGFzc3cwcmQh #Passw0rd!
+  CASSANDRA_USER: dXNlcgo=
+kind: Secret
+metadata:
+  name: cassandra-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: cassandra
+  name: cassandra-svc
+spec:
+  ports:
+  - port: 9042
+    protocol: TCP
+    targetPort: 9042
+  selector:
+    app: cassandra
+status:
+  loadBalancer: {}
